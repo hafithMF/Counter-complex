@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Simple Counter</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+        margin: 0;
+      }
+      #root {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      .button {
+        font-size: 16px;
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .button.increment {
+        background-color: #4CAF50;
+        color: white;
+      }
+      .button.decrement {
+        background-color: #f44336;
+        color: white;
+      }
+      .button.reset {
+        background-color: #008CBA;
+        color: white;
+      }
+      .button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+      .counter {
+        font-size: 24px;
+        margin: 20px 0;
+      }
+      .done-message {
+        font-size: 24px;
+        color: #ff5722;
+        margin: 20px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+
+      function Header() {
+        return ;
+      }
+
+      function HomePage() {
+        const [likes, setLikes] = React.useState(0);
+
+        function handleIncrement() {
+          setLikes(likes + 1);
+        }
+
+        function handleDecrement() {
+          setLikes(likes - 1);
+        }
+
+        function handleReset() {
+          setLikes(0);
+        }
+
+        const a = likes >= 10 || likes <= -1;
+
+        return (
+          <>
+            <Header />
+            {!a && (
+              <>
+                <button className="button increment" onClick={handleIncrement}>+</button>
+                <button className="button decrement" onClick={handleDecrement}>-</button>
+              </>
+            )}
+            {a && <p className="done-message">Full</p>}
+            <button className="button reset" onClick={a ? handleReset : null} disabled={!a}>Reset</button>
+            <p className="counter">Likes: {likes}</p>
+          </>
+        );
+      }
+
+      root.render(<HomePage />);
+    </script>
+  </body>
+</html>
